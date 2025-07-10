@@ -90,3 +90,34 @@ async function loginUser(e) {
  
 }
 
+
+ document.getElementById("submits").addEventListener("click", createUser); 
+
+      async function createUser (username,  email, password){
+            let usernameEl=document.getElementById("username")
+            let emailEl=document.getElementById("email")
+            let passwordEl=document.getElementById("password")
+
+            username=usernameEl.value
+            email=emailEl.value
+            password=passwordEl.value
+
+            let user = {  
+            username: username,
+            email: email,
+            password:password
+            }
+
+            const response = await fetch ("http://127.0.0.1:3001/api/register", {
+                method: "POST",
+                headers: {
+                    "content-type": "Application/json"
+                },
+                body: JSON.stringify(user)
+            })
+            const data= await response.json();
+            console.log(data);
+            
+        }
+
+

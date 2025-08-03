@@ -121,3 +121,32 @@ async function loginUser(e) {
         }
 
 
+          document.getElementById("submit").addEventListener("click", createFlag); 
+
+      async function createFlag (country, colors){
+            let countryEl=document.getElementById("country")
+            let colorsEl=document.getElementById("colors")
+     
+
+            country=countryEl.value
+            colors=colorsEl.value
+        
+
+            let flag = {  
+            country: country,
+            colors: colors,
+            }
+
+            const response = await fetch ("http://127.0.0.1:3000/api/workexperiences", {
+                method: "POST",
+                headers: {
+                    "content-type": "Application/json"
+                },
+                body: JSON.stringify(flag)
+            })
+            const data= await response.json();
+            console.log(data);
+            
+        }
+
+

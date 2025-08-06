@@ -12,7 +12,13 @@ function init() {
     if(logInFormEl) {
         logInFormEl.addEventListener("submit", loginUser)
     }
-}
+      
+    if(flagForm) {
+      document.getElementById("addFlag").addEventListener("click", createFlag); }
+    if(registerForm) {
+       document.getElementById("submits").addEventListener("click", createUser); 
+    }
+    }
 
 
 function changeMenu(){
@@ -21,7 +27,8 @@ function changeMenu(){
 
     if(localStorage.getItem("user_token")) {
         menuEl.innerHTML= `
-           <li class="liheadmenu"><a href="register.html">Startsida</a></li>
+                   <li class="liheadmenu"><a href="index.html">Startsida</a></li>
+          
             
             <li class="liheadmenu"><a href="secretPage.html">secret</a></li>
             <li class="liheadmenu"><button id="logoutButton">Logga ut</button></li>
@@ -31,11 +38,14 @@ function changeMenu(){
     } else { 
         
            menuEl.innerHTML= `
-           <li class="liheadmenu"><a href="register.html">Startsida</a></li>
+              <li class="liheadmenu"><a href="index.html">Startsida</a></li>
+             <li class="liheadmenu"><a href="register.html">Registrera dig</a></li>
            
                <li class="liheadmenu"><a href="loggaIn.html">Logga in</a></li>
         
         `
+
+           //<li class="liheadmenu"><a href="register.html">Startsida</a></li>
     }
 
     let logoutButton= document.getElementById("logoutButton");
@@ -77,8 +87,10 @@ async function loginUser(e) {
         if(resp.ok) {
             const data = await resp.json();
             // console.log(data);
-            localStorage.setItem("user_token", data.token);
+            localStorage.setItem("user_token", data.response.token);
             window.location.href= "secretPage.html"
+            console.log(data.response.token);
+            
             
         } else {
             throw error;
@@ -91,7 +103,7 @@ async function loginUser(e) {
 }
 
 
- document.getElementById("submits").addEventListener("click", createUser); 
+
 
       async function createUser (username,  email, password){
             let usernameEl=document.getElementById("username")
@@ -121,32 +133,46 @@ async function loginUser(e) {
         }
 
 
-          document.getElementById("submit").addEventListener("click", createFlag); 
+          
 
-      async function createFlag (country, colors){
+      async function createFlag (e){
+
+            e.preventDefault();
             let countryEl=document.getElementById("country")
             let colorsEl=document.getElementById("colors")
      
 
-            country=countryEl.value
-            colors=colorsEl.value
+            let country=countryEl.value
+            let colors=colorsEl.value
         
 
             let flag = {  
             country: country,
             colors: colors,
             }
+            const token = localStorage.getItem("user_token")
 
-            const response = await fetch ("http://127.0.0.1:3000/api/workexperiences", {
+            try {const response = await fetch ("http://127.0.0.1:3001/api/flags", {
                 method: "POST",
                 headers: {
-                    "content-type": "Application/json"
+                    "content-type": "Application/json",
+                    "authorization":"Bearer " + token
                 },
                 body: JSON.stringify(flag)
             })
+
+            if(response.ok) {
             const data= await response.json();
             console.log(data);
             
-        }
+        
+        } }catch(error) {
 
+            console.log("går ej att lägga till flagga" +error);
+            
+        }
+    }
+
+
+    
 

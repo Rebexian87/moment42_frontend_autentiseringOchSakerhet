@@ -1,0 +1,53 @@
+/*huvudmeny*/
+.headmenu {
+  
+    font-size: 1.05em;
+    font-weight: bold;
+    color: blue;
+    font-style: italic;
+  
+    
+ list-style-type: none; margin: 0; padding: 0;}
+
+
+.headmenu > li:hover > ul {display: block;}
+.headmenu a {text-decoration: none;}
+
+.liheadmenu {
+display: inline-block; position: relative; padding: 8px;
+}
+
+body {
+    
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+li {
+    font-size: 1.4em;
+    padding: 0.1em;}
+
+    label {
+        font-size: 1.4em;
+        padding: 0.3em;
+        
+    }
+
+    input {
+    width: 14em;
+    margin-bottom: 0.2%;
+}
+
+button {
+    background-color: pink;
+    width: 8em;
+    margin-top: 1%;
+    height: 2em;
+    font-size: 1em;
+    
+}
+
+#sectionAbout {
+width: 80vh;
+
+
+}

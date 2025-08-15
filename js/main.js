@@ -8,6 +8,7 @@ window.onload=init;
 
 function init() {
     changeMenu()
+     getFlags()
 
     if(logInFormEl) {
         logInFormEl.addEventListener("submit", loginUser)
@@ -18,6 +19,8 @@ function init() {
     if(registerForm) {
        document.getElementById("submits").addEventListener("click", createUser); 
     }
+
+   
     }
 
 
@@ -173,6 +176,63 @@ async function loginUser(e) {
         }
     }
 
+          async function getFlags (){
 
-    
+       
+            // let countryEl=document.getElementById("country")
+            // let colorsEl=document.getElementById("colors")
+     
+
+            // let country=countryEl.value
+            // let colors=colorsEl.value
+        
+
+            // let flag = {  
+            // country: country,
+            // colors: colors,
+            // }
+            // const token = localStorage.getItem("user_token")
+
+            try {const response = await fetch ("http://127.0.0.1:3001/api/flags"
+            //     ,
+            //    {
+            //     method: "GET",
+            //     headers: {
+            //         "content-type": "Application/json",
+            //         // "authorization":"Bearer " + token
+            //     },
+            //     body: JSON.stringify(flag)
+            // }
+            )
+        if(response.ok) {
+            const data= await response.json();
+            console.log(data);
+
+            displayFlags(data) }} catch {
+                console.log("fel");
+                
+            }
+            
+        
+     
+    }
+
+
+async function displayFlags (data) {
+     let flags = document.getElementById("flaggor")
+    flags.innerHTML="";
+
+
+    data.forEach(flag => {
+         let newElLi= document.createElement ("li")      //Skapar nytt element (li)
+           let newText=document.createTextNode (flag.country+ " " + flag.colors ) //Skapar texten till det som visas i listan
+             //newElLi.setAttribute('id', flag.id) //Skapar attributet id
+            newElLi.appendChild(newText) //Lägger newText som "barn" till newElLi
+          flags.appendChild(newElLi) // Lägger newElLi som "barn" till expEl
+    })
+        
+
+    } 
+
+
 

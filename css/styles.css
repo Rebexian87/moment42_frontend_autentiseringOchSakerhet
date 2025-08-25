@@ -1,21 +1,52 @@
-/*huvudmeny*/
-.headmenu {
-  
-    font-size: 1.05em;
-    font-weight: bold;
-    color: blue;
-    font-style: italic;
-  
-    
- list-style-type: none; margin: 0; padding: 0;}
 
+*{margin:auto}
 
-.headmenu > li:hover > ul {display: block;}
-.headmenu a {text-decoration: none;}
-
-.liheadmenu {
-display: inline-block; position: relative; padding: 8px;
+h1, h2{
+    text-align: center;
+    margin-bottom: 0.5%;
 }
+
+
+
+/*Styling for the header*/
+header {      
+        height: 140px;
+        background-color: rgb(18, 61, 10);
+        position: relative;
+        padding: 0 1em;
+        justify-content: space-between;
+        align-items: center;
+        position: static;
+        display: flex;       
+    }
+
+nav {    
+        font-size: 1.4em;}
+    nav ul li {
+        display: inline;
+           
+         }       
+
+    a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+        color: white; /*textfärg från variabel*/
+        display: inline;
+    }
+
+    .active {
+        color: rgb(154, 203, 226);
+        font-style: italic;
+         font-weight: bold;
+   text-decoration-line: underline;
+    }
+
+    a:hover{
+         background-color: rgb(11, 141, 28);
+    }
+
+
 
 body {
     
@@ -34,7 +65,7 @@ li {
 
     input {
     width: 14em;
-    margin-bottom: 0.2%;
+    margin-bottom: 1%;
 }
 
 button {
@@ -46,8 +77,36 @@ button {
     
 }
 
+section {
+    background-color: rgb(138, 206, 206);
+    padding: 5%;
+
+    margin-bottom: 5%;
+
+    border: 1px solid;
+    /* display: flex; */
+  align-items: center;
+}
+
+form {
+    margin: auto;
+    text-align: center;
+    
+}
+
 #sectionAbout {
 width: 80vh;
 
 
+}
+
+#flaggor li {
+    list-style-type: none;
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.container{
+    max-width: 1500px;
+    
 }
